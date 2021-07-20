@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1080120084254",
+    "project_id": "mytodoapp-9d722",
+    "storage_bucket": "mytodoapp-9d722.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080120084254:android:029f93eee1fb78ad422b0f",
+        "android_client_info": {
+          "package_name": "com.moricode.todoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1080120084254-j7bstj2nkbtkrlq6q14enfp3ub3kau62.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzC0E7SFg010BwPGJ30uzoHnotoXNPoww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1080120084254-j7bstj2nkbtkrlq6q14enfp3ub3kau62.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
