@@ -1,8 +1,9 @@
 package com.moricode.todoapp.feature.todo.domain
 
+import com.moricode.todoapp.core.base.Resource
 
 
 interface TodoRepository {
-    suspend fun addTodo(todo : TodoEntity)
+    suspend fun createTodo(todo : TodoEntity) : Resource<TodoEntity>
     suspend fun getTodoList()
 }

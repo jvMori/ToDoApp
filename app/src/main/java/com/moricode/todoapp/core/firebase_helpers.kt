@@ -3,33 +3,36 @@ package com.moricode.todoapp.core
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import com.moricode.todoapp.core.base.Resource
+import com.moricode.todoapp.core.base.handleError
 import kotlinx.coroutines.tasks.await
+import java.net.SocketException
 
 suspend fun FirebaseFirestore.saveDataInFireStore(
     childName: String,
     hashMap: HashMap<String, Any>
-): Boolean {
+): Resource<Boolean> {
     return try {
         this
             .collection("todo")
             .document(childName)
             .set(hashMap)
             .await()
-        true
+        Resource.success(true)
     } catch (e: Exception) {
-        false
+        handleError(e)
     }
 }
 
 suspend fun FirebaseFirestore.getAllDocuments()
-        : List<DocumentSnapshot>? {
+        : Resource<List<DocumentSnapshot>?> {
     return try {
         val data = this
             .collection("todo")
             .get()
             .await()
-        data.documents
+        Resource.success(data.documents)
     } catch (e: Exception) {
-        null
+        handleError(e)
     }
 }
