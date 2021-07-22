@@ -4,6 +4,6 @@ import com.moricode.todoapp.core.base.Resource
 
 
 interface TodoRepository {
-    suspend fun createTodo(todo : TodoEntity) : Resource<TodoEntity>
+    suspend fun createTodo(todo : TodoEntity) : Resource<Boolean>
     suspend fun getTodoList()
 }

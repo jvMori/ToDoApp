@@ -10,7 +10,7 @@ import java.net.SocketException
 
 suspend fun FirebaseFirestore.saveDataInFireStore(
     childName: String,
-    hashMap: HashMap<String, Any>
+    hashMap: HashMap<String, Any?>
 ): Resource<Boolean> {
     return try {
         this

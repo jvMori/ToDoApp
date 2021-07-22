@@ -18,6 +18,7 @@ class BaseApplication : Application() {
             androidContext(this@BaseApplication)
             modules(
                 listOf(
+                    appModule,
                     listModule,
                     todoCreationModule,
                 )

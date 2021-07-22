@@ -13,19 +13,5 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val db = Firebase.firestore
-
-        GlobalScope.launch {
-            val map = mutableMapOf<String, Any>()
-            map["id"] = "test"
-            val result = db
-                    .collection("todos")
-                    .document("test")
-                    .set(map)
-                    .await()
-        }
-
-
     }
 }
