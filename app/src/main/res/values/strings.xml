@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">ToDoApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_btn">Add btn</string>
+    <string name="title_label">Title</string>
+    <string name="description_label">Description</string>
+    <string name="icon_label">Please provide icon url</string>
+    <string name="create">Create</string>
 </resources>
