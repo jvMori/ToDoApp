@@ -56,27 +56,7 @@ abstract class BaseActivity<T : ViewDataBinding, out V : BaseViewModel> : AppCom
 
 
     open fun onActions(action: Actions) {
-        Timber.d("Received => $action")
-        when (action) {
-            is Actions.Error -> Toast.makeText(
-                baseContext, action.message,
-                Toast.LENGTH_SHORT
-            ).show()
-                .also {
-                    onError(action.message)
-                    onActions(Actions.Loading(false))
-                }
-            is Actions.Loading -> onLoading()
-            is Actions.Success<*> -> onSuccess(action.data)
-        }
     }
-
-    open fun onError(message: String) {
-
-    }
-
-    open fun onLoading() {}
-    open fun <Type> onSuccess(data: Type) {}
 
     override fun onStop() {
         super.onStop()

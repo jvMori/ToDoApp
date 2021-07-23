@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.moricode.todoapp.BR
+import com.moricode.todoapp.core.util.makeToast
 import timber.log.Timber
 
 
@@ -72,8 +74,21 @@ abstract class BaseFragment<T : ViewDataBinding, out V : BaseViewModel> : Fragme
     }
 
     open fun onActions(action: Actions) {
-        parent<BaseActivity<*, *>>()?.onActions(action)
+        Timber.d("Received => $action")
+        when (action) {
+            is Actions.Error -> makeToast(action.message)
+                .also {
+                    onError(action.message)
+                    onActions(Actions.Loading(false))
+                }
+            is Actions.Loading -> onLoading()
+            is Actions.Success<*> -> onSuccess(action.data)
+        }
     }
+
+    open fun onError(message: String) {}
+    open fun onLoading() {}
+    open fun <Type> onSuccess(data: Type) {}
 
     fun refreshBindings() {
         viewDataBinding.invalidateAll()

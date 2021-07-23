@@ -13,7 +13,6 @@ class Resource<T>(
     sealed class Status {
         object SUCCESS : Status()
         object ERROR : Status()
-        object LOADING : Status()
     }
 
     companion object {
@@ -36,15 +35,6 @@ class Resource<T>(
                 data,
                 msg,
                 code
-            )
-        }
-
-        fun <T> loading(@Nullable data: T?): Resource<T> {
-            return Resource(
-                Status.LOADING,
-                data,
-                null,
-                null
             )
         }
 

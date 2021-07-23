@@ -33,15 +33,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </androidx.cardview.widget.CardView>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/title"
             style="@style/MyTextInputLayout"
-            maxCharacters="@{30}"
+            maxCharacters="@{vm.titleMaxChar}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -70,7 +65,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/description"
             style="@style/MyTextInputLayout"
-            maxCharacters="@{200}"
+            maxCharacters="@{vm.descriptionMaxChar}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -87,8 +82,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
-                android:lines="3"
-                android:maxLines="3"
+                android:lines="4"
+                android:maxLines="6"
+                android:textColor="@color/darkColor"
+                android:textSize="16sp"
                 android:singleLine="false"
                 android:text="@={vm.description}" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -109,6 +106,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textColor="@color/darkColor"
+                android:textSize="16sp"
+                android:singleLine="true"
                 android:text="@={vm.iconUrl}" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -124,10 +125,22 @@
             android:paddingRight="30dp"
             android:text="@string/create"
             app:cornerRadius="18dp"
+            visibility="@{!vm.isLoading}"
             android:backgroundTint="@color/darkColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/description" />
+
+        <com.wang.avi.AVLoadingIndicatorView
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorName="BallPulseIndicator"
+            app:indicatorColor="@color/darkColor"
+            visibility="@{vm.isLoading}"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

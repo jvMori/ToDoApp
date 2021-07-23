@@ -77,6 +77,9 @@ dependencies {
     //Material
     implementation 'com.google.android.material:material:1.5.0-alpha01'
 
+    //Loading indicator
+    implementation 'com.wang.avi:library:2.1.3'
+
 
 
 }
