@@ -1,12 +1,8 @@
-package com.moricode.todoapp
+package com.moricode.todoapp.core.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
+import com.moricode.todoapp.R
 
 
 class MainActivity : AppCompatActivity() {

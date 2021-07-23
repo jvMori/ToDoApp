@@ -8,5 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FFEE4736</color>
+    <color name="darkColor">#FF545796</color>
+    <color name="darkColorOpacity">#60545796</color>
     <color name="whiteDarkColor">#FFDEDFEC</color>
+    <color name="backgroundLightColor">#FFF3F4F9</color>
 </resources>

@@ -5,13 +5,13 @@ import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
 
 object Bindings {
-    @BindingAdapter("errorMessage", "maxCharacters", requireAll = false)
+    @BindingAdapter("maxCharacters", requireAll = false)
     @JvmStatic
     fun validateTextInputLayout(
         textInputLayout: TextInputLayout,
-        message: String?,
         maxCharacters: Int?
     ) {
+        textInputLayout.setErrorIconDrawable(0)
         textInputLayout.editText?.doOnTextChanged { text, _, _, _ ->
             textInputLayout.isErrorEnabled =
                 (text == null || text.isEmpty() || text.length > (maxCharacters

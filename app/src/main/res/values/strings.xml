@@ -5,6 +5,7 @@
     <string name="add_btn">Add btn</string>
     <string name="title_label">Title</string>
     <string name="description_label">Description</string>
-    <string name="icon_label">Please provide icon url</string>
+    <string name="icon_label">Provide icon url</string>
     <string name="create">Create</string>
+    <string name="what_you_need_to_do">What you need to do?</string>
 </resources>

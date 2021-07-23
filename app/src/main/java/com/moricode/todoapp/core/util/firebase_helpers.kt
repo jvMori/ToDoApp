@@ -1,4 +1,4 @@
-package com.moricode.todoapp.core
+package com.moricode.todoapp.core.util
 
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
