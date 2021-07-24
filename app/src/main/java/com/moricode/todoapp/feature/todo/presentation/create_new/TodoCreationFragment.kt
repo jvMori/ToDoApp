@@ -1,13 +1,11 @@
 package com.moricode.todoapp.feature.todo.presentation.create_new
 
-import android.widget.Toast
 import com.moricode.todoapp.R
 import com.moricode.todoapp.core.base.Actions
 import com.moricode.todoapp.core.base.BaseFragment
 import com.moricode.todoapp.core.util.Bindings
 import com.moricode.todoapp.core.util.makeToast
 import com.moricode.todoapp.databinding.FragmentTodoCreationBinding
-import com.moricode.todoapp.databinding.FragmentTodoListBinding
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 

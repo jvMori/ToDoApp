@@ -8,13 +8,15 @@ import com.moricode.todoapp.core.base.handleError
 import kotlinx.coroutines.tasks.await
 import java.net.SocketException
 
+const val COLLECTION_KEY_NAME = "todo"
+
 suspend fun FirebaseFirestore.saveDataInFireStore(
     childName: String,
     hashMap: HashMap<String, Any?>
 ): Resource<Boolean> {
     return try {
         this
-            .collection("todo")
+            .collection(COLLECTION_KEY_NAME)
             .document(childName)
             .set(hashMap)
             .await()
@@ -28,7 +30,7 @@ suspend fun FirebaseFirestore.getAllDocuments()
         : Resource<List<DocumentSnapshot>?> {
     return try {
         val data = this
-            .collection("todo")
+            .collection(COLLECTION_KEY_NAME)
             .get()
             .await()
         Resource.success(data.documents)

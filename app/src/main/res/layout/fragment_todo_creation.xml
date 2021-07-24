@@ -115,32 +115,34 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButton"
+            visibility="@{!vm.isLoading}"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="42dp"
             android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/darkColor"
             android:onClick="@{()->vm.submit()}"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:text="@string/create"
             app:cornerRadius="18dp"
-            visibility="@{!vm.isLoading}"
-            android:backgroundTint="@color/darkColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/description" />
 
         <com.wang.avi.AVLoadingIndicatorView
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description"
+            visibility="@{vm.isLoading}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:indicatorName="BallPulseIndicator"
             app:indicatorColor="@color/darkColor"
-            visibility="@{vm.isLoading}"
-            />
+            app:indicatorName="BallPulseIndicator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/materialButton"
+            app:layout_constraintBottom_toBottomOf="@+id/materialButton"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="416dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
