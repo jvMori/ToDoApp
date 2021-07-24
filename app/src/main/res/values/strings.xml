@@ -8,4 +8,5 @@
     <string name="icon_label">Provide icon url</string>
     <string name="create">Create</string>
     <string name="what_you_need_to_do">What you need to do?</string>
+    <string name="icon">icon</string>
 </resources>

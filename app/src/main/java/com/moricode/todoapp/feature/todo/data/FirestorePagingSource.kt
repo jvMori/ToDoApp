@@ -26,7 +26,9 @@ class FirestorePagingSource(
             val lastDocumentSnapshot = currentPage.documents[currentPage.size() - 1]
 
 
-            val nextPage = db.collection(collection).limit(limit).startAfter(lastDocumentSnapshot)
+            val nextPage = db.collection(collection)
+                .limit(limit)
+                .startAfter(lastDocumentSnapshot)
                 .get()
                 .await()
 

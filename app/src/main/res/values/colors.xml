@@ -3,8 +3,8 @@
     <color name="purple_200">#FFBB86FC</color>
     <color name="primaryColor">#FF483AE9</color>
     <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FFFBAF55</color>
-    <color name="teal_700">#FFFAB249</color>
+    <color name="accentColor">#FFFBAF55</color>
+    <color name="darkAccentColor">#FFFAB249</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FFEE4736</color>
