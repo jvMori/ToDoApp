@@ -10,7 +10,6 @@ abstract class BaseViewModel : ViewModel() {
 
     val actions = MutableLiveData<Actions>()
     val isLoading = MutableLiveData<Boolean>()
-    val loadingStateUpload = MutableLiveData<Boolean>()
     val errorState = MutableLiveData<Boolean>()
 
 
@@ -25,6 +24,7 @@ abstract class BaseViewModel : ViewModel() {
         Timber.d("Sending $action")
         viewModelScope.launch {
             actions.value = action
+            actions.value = Actions.Empty
         }
     }
 }

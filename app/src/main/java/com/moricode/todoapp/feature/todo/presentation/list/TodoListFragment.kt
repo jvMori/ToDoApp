@@ -41,6 +41,10 @@ class TodoListFragment : BaseFragment<FragmentTodoListBinding, TodoListVM>() {
             is TodoListVM.OnCreateBtnClicked -> {
                 navigate(R.id.action_todoListFragment_to_todoCreationFragment)
             }
+            is TodoListVM.OnItemClicked -> {
+
+                //navigate(R.id.action_todoListFragment_to_todoCreationFragment, action.entity)
+            }
         }
     }
 

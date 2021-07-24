@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/todoListFragment"
         android:name="com.moricode.todoapp.feature.todo.presentation.list.TodoListFragment"
-        android:label="fragment_todo_list"
-        tools:layout="@layout/fragment_todo_list" >
+        android:label="Todo List"
+        tools:layout="@layout/fragment_todo_list">
         <action
             android:id="@+id/action_todoListFragment_to_todoCreationFragment"
             app:destination="@id/todoCreationFragment"
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/todoCreationFragment"
         android:name="com.moricode.todoapp.feature.todo.presentation.create_new.TodoCreationFragment"
-        android:label="TodoCreationFragment" >
+        android:label="Create Todo">
         <argument
             android:name="todoId"
             app:argType="string"

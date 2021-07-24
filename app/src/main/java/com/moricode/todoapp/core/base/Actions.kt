@@ -7,6 +7,7 @@ open class Actions {
     data class Loading(val loading : Boolean) : Actions()
     data class Error(val message : String) : Actions()
     data class Success<T>(val data : T) : Actions()
+    object Empty : Actions()
 }
 
 

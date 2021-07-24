@@ -9,12 +9,18 @@ import com.moricode.todoapp.core.base.Actions
 import com.moricode.todoapp.core.base.BaseViewModel
 import com.moricode.todoapp.core.util.COLLECTION_KEY_NAME
 import com.moricode.todoapp.feature.todo.data.FirestorePagingSource
+import com.moricode.todoapp.feature.todo.domain.TodoEntity
 
 class TodoListVM(
     private val pagingSource: FirestorePagingSource,
 ) : BaseViewModel() {
+
     object OnCreateBtnClicked : Actions()
-    val adapter = TodoItemAdapter()
+    data class OnItemClicked(val entity: TodoEntity?) : Actions()
+
+    val adapter = TodoItemAdapter(){
+        dispatchAction(OnItemClicked(it))
+    }
 
     fun createButtonClicked() {
         dispatchAction(OnCreateBtnClicked)
