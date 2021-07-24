@@ -15,11 +15,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         tools:context=".feature.todo.presentation.list.TodoListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/todo_list"
+            android:paddingTop="16dp"
+            android:layout_marginBottom="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"

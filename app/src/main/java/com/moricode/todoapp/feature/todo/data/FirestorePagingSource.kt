@@ -3,6 +3,7 @@ package com.moricode.todoapp.feature.todo.data
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.moricode.todoapp.feature.todo.domain.TodoEntity
 import kotlinx.coroutines.tasks.await
@@ -18,6 +19,7 @@ class FirestorePagingSource(
         return try {
 
             val currentPage = params.key ?: db.collection(collection)
+                .orderBy("createdAt", Query.Direction.DESCENDING)
                 .limit(limit)
                 .get()
                 .await()
@@ -27,6 +29,7 @@ class FirestorePagingSource(
 
 
             val nextPage = db.collection(collection)
+                .orderBy("createdAt", Query.Direction.DESCENDING)
                 .limit(limit)
                 .startAfter(lastDocumentSnapshot)
                 .get()

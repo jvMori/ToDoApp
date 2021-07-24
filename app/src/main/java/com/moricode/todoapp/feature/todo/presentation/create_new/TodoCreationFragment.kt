@@ -5,6 +5,7 @@ import com.moricode.todoapp.core.base.Actions
 import com.moricode.todoapp.core.base.BaseFragment
 import com.moricode.todoapp.core.util.Bindings
 import com.moricode.todoapp.core.util.makeToast
+import com.moricode.todoapp.core.util.navigate
 import com.moricode.todoapp.databinding.FragmentTodoCreationBinding
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -24,6 +25,7 @@ class TodoCreationFragment : BaseFragment<FragmentTodoCreationBinding, TodoCreat
             }
             is Actions.Success<*> -> {
                 makeToast("Todo successfully created!")
+                navigate(R.id.action_todoCreationFragment_to_todoListFragment)
             }
         }
     }

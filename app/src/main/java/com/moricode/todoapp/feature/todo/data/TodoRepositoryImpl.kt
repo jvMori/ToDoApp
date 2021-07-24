@@ -19,9 +19,4 @@ class TodoRepositoryImpl(val db : FirebaseFirestore) : TodoRepository {
         return db.saveDataInFireStore(todo.title, data)
     }
 
-
-    override suspend fun getTodoList() {
-        TODO("Not yet implemented")
-    }
-
 }

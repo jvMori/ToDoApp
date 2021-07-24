@@ -23,5 +23,8 @@
             android:name="todoId"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_todoCreationFragment_to_todoListFragment"
+            app:destination="@id/todoListFragment" />
     </fragment>
 </navigation>
