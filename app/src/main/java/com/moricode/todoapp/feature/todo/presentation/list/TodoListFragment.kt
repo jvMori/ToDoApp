@@ -26,13 +26,12 @@ class TodoListFragment : BaseFragment<FragmentTodoListBinding, TodoListVM>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         lifecycleScope.launch {
             vm.flow.collectLatest {
-                print(it);
                 vm.adapter.submitData(it)
             }
         }
+        vm.handleLoadingStates()
     }
 
     override fun onActions(action: Actions) {

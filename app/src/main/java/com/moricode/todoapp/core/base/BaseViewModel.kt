@@ -10,13 +10,18 @@ abstract class BaseViewModel : ViewModel() {
 
     val actions = MutableLiveData<Actions>()
     val isLoading = MutableLiveData<Boolean>()
-    val errorState = MutableLiveData<Boolean>()
+    val isError = MutableLiveData<Boolean>()
 
+    fun setIsError(error : Boolean){
+        viewModelScope.launch {
+            isError.value = error
+        }
+    }
 
     fun setIsLoading(loading: Boolean) {
         viewModelScope.launch {
             isLoading.value = loading
-            errorState.value = false
+            isError.value = false
         }
     }
 

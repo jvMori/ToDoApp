@@ -44,4 +44,8 @@ class FirestorePagingSource(
             LoadResult.Error(e)
         }
     }
+
+    override fun getRefreshKey(state: PagingState<QuerySnapshot, TodoEntity>): QuerySnapshot? {
+        return null
+    }
 }
