@@ -1,12 +1,9 @@
 package com.moricode.todoapp.feature.todo.presentation.list
 
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
-import com.google.firebase.firestore.FirebaseFirestore
 import com.moricode.todoapp.core.base.Actions
 import com.moricode.todoapp.core.base.BaseViewModel
-import com.moricode.todoapp.core.util.COLLECTION_KEY_NAME
 import com.moricode.todoapp.feature.todo.data.FirestorePagingSource
 import com.moricode.todoapp.feature.todo.domain.TodoEntity
 import com.moricode.todoapp.feature.todo.domain.TodoRepository

@@ -1,6 +1,6 @@
 package com.moricode.todoapp.feature.todo.presentation.list
 
-import com.moricode.todoapp.core.util.COLLECTION_KEY_NAME
+import com.moricode.todoapp.feature.todo.data.COLLECTION_KEY_NAME
 import com.moricode.todoapp.feature.todo.data.FirestorePagingSource
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

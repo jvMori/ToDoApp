@@ -61,9 +61,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-<!--        <include layout="@layout/error_layout"-->
-<!--            visibility="@{vm.isError}"-->
-<!--            />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

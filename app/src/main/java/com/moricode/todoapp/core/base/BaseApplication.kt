@@ -1,7 +1,7 @@
 package com.moricode.todoapp.core.base
 
 import android.app.Application
-import com.moricode.todoapp.feature.todo.presentation.create_new.todoCreationModule
+import com.moricode.todoapp.feature.todo.presentation.create_new.todoModule
 import com.moricode.todoapp.feature.todo.presentation.list.listModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -20,7 +20,7 @@ class BaseApplication : Application() {
                 listOf(
                     appModule,
                     listModule,
-                    todoCreationModule,
+                    todoModule,
                 )
             )
         }

@@ -42,8 +42,8 @@ class TodoCreationVM(val repository: TodoRepository) : BaseViewModel() {
             dispatchAction(Actions.Error("Please provide correct data before continuing."))
             return
         }
+        setIsLoading(true)
         viewModelScope.launch {
-            setIsLoading(true)
             val result =
                 if (todoEntity != null) {
                     val data = createEntity(todoEntity!!.id)
@@ -52,7 +52,6 @@ class TodoCreationVM(val repository: TodoRepository) : BaseViewModel() {
                     val data = createEntity(null)
                     repository.createTodo(data)
                 }
-            setIsLoading(false)
             when (result.status) {
                 is Resource.Status.SUCCESS -> {
                     resetValues()
@@ -63,6 +62,7 @@ class TodoCreationVM(val repository: TodoRepository) : BaseViewModel() {
                 }
             }
         }
+        setIsLoading(false)
     }
 
     private fun createEntity(id: String?) = TodoEntity(
