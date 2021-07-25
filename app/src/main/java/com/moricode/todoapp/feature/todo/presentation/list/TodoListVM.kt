@@ -1,11 +1,13 @@
 package com.moricode.todoapp.feature.todo.presentation.list
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moricode.todoapp.core.base.Actions
 import com.moricode.todoapp.core.base.BaseViewModel
+import com.moricode.todoapp.core.base.handleFirestoreErrorMessage
 import com.moricode.todoapp.feature.todo.data.COLLECTION_KEY_NAME
 import com.moricode.todoapp.feature.todo.data.FirestorePagingSource
 import com.moricode.todoapp.feature.todo.domain.TodoEntity
@@ -14,9 +16,11 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class TodoListVM(
-    private val db : FirebaseFirestore,
+    private val db: FirebaseFirestore,
     private val repository: TodoRepository
 ) : BaseViewModel() {
+
+    val errorMessage = MutableLiveData<String>()
 
     object OnCreateBtnClicked : Actions()
     data class OnItemClicked(val entity: TodoEntity?) : Actions()
@@ -31,6 +35,10 @@ class TodoListVM(
         },
     )
 
+    fun retry() {
+        adapter.retry()
+    }
+
     fun createButtonClicked() {
         dispatchAction(OnCreateBtnClicked)
     }
@@ -38,7 +46,6 @@ class TodoListVM(
     fun listenForChanges() {
         viewModelScope.launch {
             repository.listenForChanges() {
-               // pagingSource.invalidate()
                 adapter.refresh()
             }
         }
@@ -62,14 +69,18 @@ class TodoListVM(
 
 
     fun handleLoadingStates() {
-        adapter.withLoadStateFooter(
+        adapter.withLoadStateHeaderAndFooter(
+            header = MyLoadStateAdapter(adapter::retry),
             footer = MyLoadStateAdapter(adapter::retry)
         )
         viewModelScope.launch {
             adapter.loadStateFlow.collectLatest { loadStates ->
                 setIsLoading(loadStates.refresh is LoadState.Loading)
-                setIsError(loadStates.refresh is LoadState.Error)
-                setIsLoading(loadStates.append is LoadState.Loading)
+                if (loadStates.refresh is LoadState.Error) {
+                    setIsError(true)
+                    errorMessage.value =
+                        handleFirestoreErrorMessage(loadStates) ?: "Something went wrong!"
+                }
             }
         }
     }

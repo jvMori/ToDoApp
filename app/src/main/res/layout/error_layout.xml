@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <data>
+        <import type="kotlin.jvm.functions.Function0"/>
+        <import type="kotlin.Unit" />
+        <variable
+            name="retryCallback"
+            type="Function0&lt;Unit>" />
         <variable
             name="errorMessage"
             type="String" />
+        <variable
+            name="visible"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/errorLayout"
         android:layout_width="match_parent"
         android:background="@color/white"
+        visibility="@{visible}"
         android:layout_height="match_parent">
 
         <TextView
@@ -33,6 +43,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:src="@drawable/ic_retry"
+            android:onClick="@{()->retryCallback.invoke()}"
             android:backgroundTint="@color/white"
             android:tint="@color/accentColor"
             app:layout_constraintEnd_toEndOf="parent"

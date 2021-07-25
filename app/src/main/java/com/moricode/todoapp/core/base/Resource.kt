@@ -1,6 +1,8 @@
 package com.moricode.todoapp.core.base
 
 import androidx.annotation.Nullable
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
 import java.net.SocketException
 
 class Resource<T>(
@@ -46,4 +48,12 @@ fun <T> handleError(e: Exception): Resource<T> {
         Resource.error<T>("No internet connection!");
     } else
         Resource.error(e.message ?: "Something went wrong");
+}
+
+fun handleFirestoreErrorMessage(loadStates: CombinedLoadStates): String? {
+    return if ((loadStates.refresh as LoadState.Error).error is ArrayIndexOutOfBoundsException) {
+        "No items found!"
+    } else
+        (loadStates.refresh as LoadState.Error).error.localizedMessage
+
 }

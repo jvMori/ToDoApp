@@ -17,4 +17,5 @@ class MyLoadStateAdapter(
         holder: LoadStateViewHolder,
         loadState: LoadState
     ) = holder.bind(loadState)
+
 }

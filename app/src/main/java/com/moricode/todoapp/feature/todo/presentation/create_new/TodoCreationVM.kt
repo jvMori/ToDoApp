@@ -71,10 +71,4 @@ class TodoCreationVM(val repository: TodoRepository) : BaseViewModel() {
         iconUrl = iconUrl.value,
         createdAt = Calendar.getInstance().time,
     )
-
-    private fun resetValues() {
-        title.value = ""
-        description.value = ""
-        iconUrl.value = ""
-    }
 }
