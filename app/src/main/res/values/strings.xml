@@ -9,4 +9,5 @@
     <string name="create">Create</string>
     <string name="what_you_need_to_do">What you need to do?</string>
     <string name="icon">icon</string>
+    <string name="image_of_todo">Image of todo</string>
 </resources>

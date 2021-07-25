@@ -43,14 +43,13 @@ class TodoCreationVM(val repository: TodoRepository) : BaseViewModel() {
             return
         }
         viewModelScope.launch {
-            val date = Calendar.getInstance().time
             setIsLoading(true)
             val result =
                 if (todoEntity != null) {
-                    val data = createEntity(todoEntity!!.id, date)
+                    val data = createEntity(todoEntity!!.id)
                     repository.updateTodo(data)
                 } else {
-                    val data = createEntity(null, date)
+                    val data = createEntity(null)
                     repository.createTodo(data)
                 }
             setIsLoading(false)
@@ -66,12 +65,12 @@ class TodoCreationVM(val repository: TodoRepository) : BaseViewModel() {
         }
     }
 
-    private fun createEntity(id: String?, date: Date) = TodoEntity(
+    private fun createEntity(id: String?) = TodoEntity(
         id = id ?: System.currentTimeMillis().toString(),
         title = title.value ?: "",
         description = description.value ?: "",
         iconUrl = iconUrl.value,
-        createdAt = date,
+        createdAt = Calendar.getInstance().time,
     )
 
     private fun resetValues() {
