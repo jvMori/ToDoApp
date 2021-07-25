@@ -7,4 +7,5 @@ interface TodoRepository {
     suspend fun createTodo(todo : TodoEntity) : Resource<Boolean>
     suspend fun updateTodo(todo: TodoEntity) : Resource<Boolean>
     suspend fun deleteTodo(todo: TodoEntity) : Resource<Boolean>
+    suspend fun listenForChanges(refreshCallback: () -> Unit)
 }

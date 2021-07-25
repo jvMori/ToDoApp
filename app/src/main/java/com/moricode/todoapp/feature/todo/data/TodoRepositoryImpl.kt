@@ -1,6 +1,5 @@
 package com.moricode.todoapp.feature.todo.data
 
-import com.google.firebase.firestore.FirebaseFirestore
 import com.moricode.todoapp.core.base.Resource
 import com.moricode.todoapp.feature.todo.domain.NetworkDataSource
 import com.moricode.todoapp.feature.todo.domain.TodoEntity
@@ -23,6 +22,10 @@ class TodoRepositoryImpl(
 
     override suspend fun deleteTodo(todo: TodoEntity): Resource<Boolean> {
         return dataSource.delete(todo.id)
+    }
+
+    override suspend fun listenForChanges(refreshCallback: () -> Unit) {
+        dataSource.listenForChanges(refreshCallback)
     }
 
 }

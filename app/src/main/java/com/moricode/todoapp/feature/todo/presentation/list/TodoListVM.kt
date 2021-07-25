@@ -1,9 +1,12 @@
 package com.moricode.todoapp.feature.todo.presentation.list
 
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
+import com.google.firebase.firestore.FirebaseFirestore
 import com.moricode.todoapp.core.base.Actions
 import com.moricode.todoapp.core.base.BaseViewModel
+import com.moricode.todoapp.feature.todo.data.COLLECTION_KEY_NAME
 import com.moricode.todoapp.feature.todo.data.FirestorePagingSource
 import com.moricode.todoapp.feature.todo.domain.TodoEntity
 import com.moricode.todoapp.feature.todo.domain.TodoRepository
@@ -11,7 +14,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class TodoListVM(
-    private val pagingSource: FirestorePagingSource,
+    private val db : FirebaseFirestore,
     private val repository: TodoRepository
 ) : BaseViewModel() {
 
@@ -32,8 +35,16 @@ class TodoListVM(
         dispatchAction(OnCreateBtnClicked)
     }
 
+    fun listenForChanges() {
+        viewModelScope.launch {
+            repository.listenForChanges() {
+               // pagingSource.invalidate()
+                adapter.refresh()
+            }
+        }
+    }
+
     fun deleteTodo(todoEntity: TodoEntity?) {
-        print(todoEntity)
         viewModelScope.launch {
             todoEntity?.let {
                 repository.deleteTodo(it)
@@ -42,8 +53,13 @@ class TodoListVM(
     }
 
     val flow = Pager(PagingConfig(PAGE_SIZE.toInt())) {
-        pagingSource
+        FirestorePagingSource(
+            db,
+            COLLECTION_KEY_NAME,
+            PAGE_SIZE
+        )
     }.flow.cachedIn(viewModelScope)
+
 
     fun handleLoadingStates() {
         adapter.withLoadStateFooter(

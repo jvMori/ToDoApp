@@ -32,7 +32,10 @@ class TodoListFragment : BaseFragment<FragmentTodoListBinding, TodoListVM>() {
                 vm.adapter.submitData(it)
             }
         }
-        vm.handleLoadingStates()
+        vm.apply {
+            handleLoadingStates()
+            listenForChanges()
+        }
     }
 
     override fun onActions(action: Actions) {

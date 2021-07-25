@@ -12,6 +12,7 @@ class FirebaseDataSource(
     private val db: FirebaseFirestore
 ) : NetworkDataSource {
 
+
     override suspend fun create(
         childName: String,
         data: HashMap<String, Any?>
@@ -57,6 +58,14 @@ class FirebaseDataSource(
             Resource.success(true)
         } catch (e: Exception) {
             handleError(e)
+        }
+    }
+
+    override suspend fun listenForChanges(refreshCallback: () -> Unit) {
+        db.collection(COLLECTION_KEY_NAME).addSnapshotListener { value, _ ->
+            if (value != null && value.documentChanges.isNotEmpty()) {
+                refreshCallback()
+            }
         }
     }
 }
