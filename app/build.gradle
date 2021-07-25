@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-parcelize")
 }
 
 apply plugin: 'com.google.gms.google-services'
@@ -66,7 +68,6 @@ dependencies {
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-   // implementation "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
 
     //Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'

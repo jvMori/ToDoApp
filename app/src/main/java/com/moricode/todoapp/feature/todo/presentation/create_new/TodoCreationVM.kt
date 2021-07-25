@@ -17,9 +17,20 @@ class TodoCreationVM(val repository: TodoRepository) : BaseViewModel() {
     val titleMaxChar = 30
     val descriptionMaxChar = 200
 
+    var todoEntity: TodoEntity? = null
+
     val title = MutableLiveData<String>()
     val description = MutableLiveData<String>()
     val iconUrl = MutableLiveData<String>()
+
+    fun init(todoEntity: TodoEntity?) {
+        this.todoEntity = todoEntity
+        todoEntity?.let {
+            title.value = it.title
+            description.value = it.description
+            iconUrl.value = it.iconUrl ?: ""
+        }
+    }
 
     fun submit() {
         dispatchAction(Validate)
@@ -33,15 +44,15 @@ class TodoCreationVM(val repository: TodoRepository) : BaseViewModel() {
         }
         viewModelScope.launch {
             val date = Calendar.getInstance().time
-            val entity = TodoEntity(
-                id = System.currentTimeMillis().toString(),
-                title = title.value ?: "",
-                description = description.value ?: "",
-                iconUrl = iconUrl.value,
-                createdAt = date,
-            )
             setIsLoading(true)
-            val result = repository.createTodo(entity)
+            val result =
+                if (todoEntity != null) {
+                    val data = createEntity(todoEntity!!.id, date)
+                    repository.updateTodo(data)
+                } else {
+                    val data = createEntity(null, date)
+                    repository.createTodo(data)
+                }
             setIsLoading(false)
             when (result.status) {
                 is Resource.Status.SUCCESS -> {
@@ -54,6 +65,14 @@ class TodoCreationVM(val repository: TodoRepository) : BaseViewModel() {
             }
         }
     }
+
+    private fun createEntity(id: String?, date: Date) = TodoEntity(
+        id = id ?: System.currentTimeMillis().toString(),
+        title = title.value ?: "",
+        description = description.value ?: "",
+        iconUrl = iconUrl.value,
+        createdAt = date,
+    )
 
     private fun resetValues() {
         title.value = ""

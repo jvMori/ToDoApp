@@ -19,12 +19,14 @@
         android:id="@+id/todoCreationFragment"
         android:name="com.moricode.todoapp.feature.todo.presentation.create_new.TodoCreationFragment"
         android:label="Create Todo">
-        <argument
-            android:name="todoId"
-            app:argType="string"
-            app:nullable="true" />
         <action
             android:id="@+id/action_todoCreationFragment_to_todoListFragment"
-            app:destination="@id/todoListFragment" />
+            app:destination="@id/todoListFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="todoEntity"
+            app:argType="com.moricode.todoapp.feature.todo.domain.TodoEntity"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>
