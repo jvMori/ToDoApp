@@ -2,6 +2,7 @@ package com.moricode.todoapp.feature.todo.data
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moricode.todoapp.core.base.Resource
+import com.moricode.todoapp.core.util.delete
 import com.moricode.todoapp.core.util.saveDataInFireStore
 import com.moricode.todoapp.core.util.update
 import com.moricode.todoapp.feature.todo.domain.TodoEntity
@@ -18,6 +19,10 @@ class TodoRepositoryImpl(val db: FirebaseFirestore) : TodoRepository {
     override suspend fun updateTodo(todo: TodoEntity): Resource<Boolean> {
         val data = todo.mapToHashMap()
         return db.update(todo.id, data)
+    }
+
+    override suspend fun deleteTodo(todo: TodoEntity): Resource<Boolean> {
+        return db.delete(todo.id)
     }
 
 }

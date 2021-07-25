@@ -10,6 +10,7 @@ import com.moricode.todoapp.core.base.BaseFragment
 import com.moricode.todoapp.core.util.navigate
 import com.moricode.todoapp.databinding.FragmentTodoListBinding
 import com.moricode.todoapp.feature.todo.domain.TodoEntity
+import com.moricode.todoapp.feature.todo.presentation.delete.DeleteAlertDialog
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -45,6 +46,11 @@ class TodoListFragment : BaseFragment<FragmentTodoListBinding, TodoListVM>() {
                     .apply {
                         navigate(this)
                     }
+            }
+            is TodoListVM.OnLongClick -> {
+                DeleteAlertDialog.show(this.requireContext()) { confirmed ->
+                    if (confirmed) vm.deleteTodo(action.entity)
+                }
             }
         }
     }

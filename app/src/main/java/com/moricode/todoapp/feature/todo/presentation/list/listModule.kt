@@ -6,7 +6,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 
-const val PAGE_SIZE : Long = 30
+const val PAGE_SIZE: Long = 30
 
 val listModule = module {
     single {
@@ -16,5 +16,5 @@ val listModule = module {
             PAGE_SIZE
         )
     }
-    viewModel { TodoListVM(get()) }
+    viewModel { TodoListVM(pagingSource = get(), repository = get()) }
 }

@@ -40,6 +40,22 @@ suspend fun FirebaseFirestore.update(
     }
 }
 
+
+suspend fun FirebaseFirestore.delete(
+    id: String,
+): Resource<Boolean> {
+    return try {
+        this
+            .collection(COLLECTION_KEY_NAME)
+            .document(id)
+            .delete()
+            .await()
+        Resource.success(true)
+    } catch (e: Exception) {
+        handleError(e)
+    }
+}
+
 suspend fun FirebaseFirestore.getAllDocuments()
         : Resource<List<DocumentSnapshot>?> {
     return try {

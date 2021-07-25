@@ -10,7 +10,10 @@ import com.moricode.todoapp.databinding.TodoItemBinding
 import com.moricode.todoapp.feature.todo.domain.TodoEntity
 
 
-class TodoItemAdapter(val onClick: (item: TodoEntity?) -> Unit) :
+class TodoItemAdapter(
+    val onClick: (item: TodoEntity?) -> Unit,
+    val onLongClick: (item: TodoEntity?) -> Unit,
+) :
     PagingDataAdapter<TodoEntity, TodoViewHolder>(Companion) {
     companion object : DiffUtil.ItemCallback<TodoEntity>() {
         override fun areItemsTheSame(oldItem: TodoEntity, newItem: TodoEntity): Boolean {
@@ -23,10 +26,17 @@ class TodoItemAdapter(val onClick: (item: TodoEntity?) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
+        val item = getItem(position) ?: return
         val binding = holder.binding as TodoItemBinding
-        binding.todoEntity = getItem(position) ?: return
-        binding.root.setOnClickListener {
-            onClick(getItem(position))
+        binding.todoEntity = item
+        binding.root.apply {
+            setOnClickListener {
+                onClick(item)
+            }
+            setOnLongClickListener {
+                onLongClick(item)
+                return@setOnLongClickListener true
+            }
         }
         binding.executePendingBindings()
     }
