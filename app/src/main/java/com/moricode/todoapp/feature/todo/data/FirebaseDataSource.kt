@@ -22,9 +22,6 @@ class FirebaseDataSource(
                 .collection(COLLECTION_KEY_NAME)
                 .document(childName)
                 .set(data)
-                .addOnFailureListener {
-                    handleError<Boolean>(it)
-                }
                 .await()
             Resource.success(true)
         } catch (e: Exception) {
